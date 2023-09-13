@@ -1,4 +1,6 @@
-class Recipe {
+import 'package:equatable/equatable.dart';
+
+class Recipe extends Equatable {
   Recipe({required this.title, required this.ingredients});
   final String title;
   final List<String> ingredients;
@@ -10,4 +12,10 @@ class Recipe {
       ingredients: nIngredents,
     );
   }
+
+  @override
+  List<Object?> get props => [title, ingredients];
+
+  @override
+  bool? get stringify => true;
 }

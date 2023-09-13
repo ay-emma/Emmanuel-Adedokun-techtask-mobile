@@ -1,6 +1,8 @@
-class Ingredent {
-  String title;
-  DateTime date;
+import 'package:equatable/equatable.dart';
+
+class Ingredent extends Equatable {
+  final String title;
+  final DateTime date;
   Ingredent({
     required this.title,
     required this.date,
@@ -20,4 +22,10 @@ class Ingredent {
       'date': this.date.toString(),
     };
   }
+
+  @override
+  List<Object?> get props => [title, date];
+
+  @override
+  bool? get stringify => true;
 }
