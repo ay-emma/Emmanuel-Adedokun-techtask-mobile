@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tech_task/src/models/api_response.dart';
 import 'package:tech_task/src/models/ingredent.dart';
+import 'package:tech_task/src/pages/recipe_page.dart';
 import 'package:tech_task/src/pages/widgets/ingredent_card.dart';
 
 import 'package:tech_task/src/repository/launch_repo.dart';
@@ -18,6 +19,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<ApiResponse> getIngredients = LaunchRepo(NetworkApi()).getIngredents();
   List<int> selectedIndex = [];
+  List<Ingredent> selectedIngredents = [];
 
   @override
   Widget build(BuildContext context) {
@@ -101,10 +103,13 @@ class _HomePageState extends State<HomePage> {
                                   : () {
                                       if (selectedIndex.contains(index)) {
                                         selectedIndex.remove(index);
+                                        selectedIngredents.remove(value);
                                       } else {
                                         selectedIndex.add(index);
+                                        selectedIngredents.add(value);
                                       }
                                       print(selectedIndex);
+                                      print(selectedIngredents);
                                     },
                             );
                           }),
@@ -133,7 +138,14 @@ class _HomePageState extends State<HomePage> {
             width: 300,
             height: 65,
             child: FilledButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        RecipePage(ingredients: selectedIngredents),
+                  ),
+                );
+              },
               child: Text("Submit"),
             ),
           ),
