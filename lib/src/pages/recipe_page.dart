@@ -50,6 +50,7 @@ class _RecipePageState extends State<RecipePage> {
                     itemBuilder: (context, index) {
                       final value = response.data[index];
                       return ExpansionTile(
+                        key: Key('ExpansionTile$index'),
                         title: Text(value.title),
                         children: [
                           for (final ingredent in value.ingredients)

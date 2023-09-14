@@ -12,6 +12,8 @@ void main() {
         home: HomePage(networkInterface: FakeNetworkApi()),
       ),
     );
+    //Verify that this is not the Recipe page
+    expect(find.text("Available Recipe"), findsNothing);
 
     // Verify that the AppBar is present
     expect(find.byType(AppBar), findsOneWidget);
