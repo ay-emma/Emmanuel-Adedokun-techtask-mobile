@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               children: [
                 Text(
-                  "${selectedDate.day}-${selectedDate.month}-${selectedDate.year} ",
+                  "${selectedDate.day}-${selectedDate.month}-${selectedDate.year}",
                 ),
                 Icon(Icons.edit_calendar),
               ],
