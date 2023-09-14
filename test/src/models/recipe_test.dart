@@ -3,7 +3,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('Recipe Model Test - ', () {
-    test('Test Recipe Class', () {
+    test('Test Recipe Class Serelization and Deserelization', () {
       // Create a sample JSON map representing a Recipe
       final json = {
         'title': 'Recipe 1',
