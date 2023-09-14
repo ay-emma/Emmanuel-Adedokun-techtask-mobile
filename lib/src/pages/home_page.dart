@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime(2020, 2, 15);
   late Future<ApiResponse> getIngredients;
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             onTap: () async {
               final newDate = await showDatePicker(
                 context: context,
-                initialDate: DateTime.now(),
+                initialDate: selectedDate,
                 firstDate: DateTime(2019),
                 lastDate: DateTime(2024),
               );
