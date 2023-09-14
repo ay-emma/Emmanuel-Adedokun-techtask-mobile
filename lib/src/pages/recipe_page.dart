@@ -6,9 +6,10 @@ import 'package:tech_task/src/repository/launch_repo.dart';
 import 'package:tech_task/src/repository/network_api.dart';
 
 class RecipePage extends StatefulWidget {
-  const RecipePage({super.key, required this.ingredients});
+  const RecipePage(
+      {super.key, required this.ingredients, required this.networkInterface});
   final List<Ingredent> ingredients;
-
+  final NetworkInterface networkInterface;
   @override
   State<RecipePage> createState() => _RecipePageState();
 }
@@ -19,7 +20,8 @@ class _RecipePageState extends State<RecipePage> {
   void initState() {
     super.initState();
     String recipes = widget.ingredients.join(",");
-    recipe = LaunchRepo(NetworkApi()).getRecipes({"ingredients": recipes});
+    recipe = LaunchRepo(widget.networkInterface)
+        .getRecipes({"ingredients": recipes});
   }
 
   @override

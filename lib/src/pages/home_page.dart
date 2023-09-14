@@ -8,16 +8,21 @@ import 'package:tech_task/src/repository/launch_repo.dart';
 import 'package:tech_task/src/repository/network_api.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
+  const HomePage({super.key, required this.networkInterface});
+  final NetworkInterface networkInterface;
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
   DateTime selectedDate = DateTime.now();
+  late Future<ApiResponse> getIngredients;
+  @override
+  void initState() {
+    super.initState();
+    getIngredients = LaunchRepo(widget.networkInterface).getIngredents();
+  }
 
-  Future<ApiResponse> getIngredients = LaunchRepo(NetworkApi()).getIngredents();
   List<int> selectedIndex = [];
   List<Ingredent> selectedIngredents = [];
 
@@ -141,8 +146,10 @@ class _HomePageState extends State<HomePage> {
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) =>
-                        RecipePage(ingredients: selectedIngredents),
+                    builder: (context) => RecipePage(
+                      ingredients: selectedIngredents,
+                      networkInterface: widget.networkInterface,
+                    ),
                   ),
                 );
               },
