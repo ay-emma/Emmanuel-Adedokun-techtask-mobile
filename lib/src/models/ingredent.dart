@@ -9,7 +9,6 @@ class Ingredent extends Equatable {
   });
 
   factory Ingredent.fromJson(Map<String, dynamic> json) {
-    //Todo: change this to the new pattern matching method
     return Ingredent(
       title: json['title'] as String,
       date: DateTime.parse(json["use-by"]),
@@ -19,7 +18,7 @@ class Ingredent extends Equatable {
   Map<String, dynamic> toJson() {
     return {
       'title': this.title,
-      'date': this.date.toString(),
+      'use-by': this.date.toString(),
     };
   }
 
